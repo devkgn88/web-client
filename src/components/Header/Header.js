@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   AppBar,
   Toolbar,
@@ -33,7 +33,7 @@ import {
   useLayoutDispatch,
   toggleSidebar,
 } from "../../context/LayoutContext";
-import { useUserDispatch, signOut, getUserInfo } from "../../context/UserContext";
+import { useUserDispatch, signOut, useUserState } from "../../context/UserContext";
 
 const messages = [
   {
@@ -90,12 +90,12 @@ const notifications = [
 
 export default function Header(props) {
   var classes = useStyles();
-
+  
   // global
   var layoutState = useLayoutState();
   var layoutDispatch = useLayoutDispatch();
   var userDispatch = useUserDispatch();
-
+  
   // local
   var [mailMenu, setMailMenu] = useState(null);
   var [isMailsUnread, setIsMailsUnread] = useState(true);
@@ -103,6 +103,11 @@ export default function Header(props) {
   var [isNotificationsUnread, setIsNotificationsUnread] = useState(true);
   var [profileMenu, setProfileMenu] = useState(null);
   var [isSearchOpen, setSearchOpen] = useState(false);
+  const {user} = useUserState();
+
+  if(!user){
+    return null;
+  }
 
   return (
     <AppBar position="fixed" className={classes.appBar}>
@@ -136,7 +141,7 @@ export default function Header(props) {
           )}
         </IconButton>
         <Typography variant="h6" weight="medium" className={classes.logotype}>
-          React Material Admin
+          회의실 예약 시스템 Roomi
         </Typography>
         <div className={classes.grow} />
         <div
@@ -287,7 +292,7 @@ export default function Header(props) {
         >
           <div className={classes.profileMenuUser}>
             <Typography variant="h4" weight="medium">
-              John Smith
+              {user.accountName}
             </Typography>
             <Typography
               className={classes.profileMenuLink}
@@ -303,7 +308,6 @@ export default function Header(props) {
               classes.profileMenuItem,
               classes.headerMenuItem,
             )}
-            onClick={getUserInfo}
           >
             <AccountIcon className={classes.profileMenuIcon}/> Profile
           </MenuItem>

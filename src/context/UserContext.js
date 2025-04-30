@@ -3,12 +3,15 @@ import React from "react";
 var UserStateContext = React.createContext();
 var UserDispatchContext = React.createContext();
 
+
 function userReducer(state, action) {
   switch (action.type) {
     case "LOGIN_SUCCESS":
       return { ...state, isAuthenticated: true };
     case "SIGN_OUT_SUCCESS":
       return { ...state, isAuthenticated: false };
+    case "SET_USER":
+      return { ...state, user: action.payload }; // user 정보 저장
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);
     }
@@ -20,7 +23,17 @@ function userReducer(state, action) {
 function UserProvider ({children}){
   const [state, dispatch] = React.useReducer(userReducer, {
     isAuthenticated: !!localStorage.getItem("access_token"),
+    user:null,
   });
+
+  React.useEffect(() => {
+    const init = async () => {
+      if (localStorage.getItem("access_token")) {
+        await loadUserInfo(dispatch);
+      }
+    };
+    init();
+  }, []);
   
   return (
     <UserStateContext.Provider value={state}>
@@ -49,7 +62,7 @@ function useUserDispatch() {
   return context;
 }
 
-export { UserProvider, useUserState, useUserDispatch, loginUser, signOut, getUserInfo };
+export { UserProvider, useUserState, useUserDispatch, loginUser, signOut };
 
 // ###########################################################
 
@@ -77,7 +90,10 @@ function loginUser(dispatch, login, password, history, setIsLoading, setError){
         const data = await response.json();
 
         localStorage.setItem("access_token",data.accessToken);
-        dispatch({ type: "LOGIN_SUCCESS" });
+        dispatch({ type: "LOGIN_SUCCESS"});
+
+        // 사용자 정보 불러오기
+        await loadUserInfo(dispatch);
 
         setError(null);
         setIsLoading(false);
@@ -106,6 +122,10 @@ function signOut(dispatch, history) {
 // fetch로 사용하던 코드를 fetchWithAuth 사용하기
 async function fetchWithAuth(url, options={}){
   const token = localStorage.getItem('access_token');
+
+  if (!token) {
+    throw new Error("Access token not found");
+  }
 
   const authOptions = {
     ...options,
@@ -163,12 +183,15 @@ async function refreshAccessToken(){
   }
 }
 
-async function getUserInfo() {
+async function loadUserInfo(dispatch) {
   try {
     const response = await fetchWithAuth("http://localhost:8081/api/profile");
+    if (!response.ok) throw new Error("사용자 정보 요청 실패");
+
     const data = await response.json();
-    console.log(data);
+    dispatch({ type: "SET_USER", payload: data }); // context에 저장
   } catch (error) {
     console.error("네트워크 오류 발생:", error);
+    return null;
   }
 }
