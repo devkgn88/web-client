@@ -10,6 +10,7 @@ import {
   LibraryBooks as LibraryIcon,
   HelpOutline as FAQIcon,
   ArrowBack as ArrowBackIcon,
+  Timeline as TimelineIcon,
 } from "@material-ui/icons";
 import { useTheme } from "@material-ui/styles";
 import { withRouter } from "react-router-dom";
@@ -80,6 +81,7 @@ const structure = [
     link: "",
     icon: <Dot size="large" color="secondary" />,
   },
+  { id: 15, label: "Timeline", link: "/app/timeline", icon: <TimelineIcon /> },
 ];
 
 function Sidebar({ location }) {
