@@ -138,7 +138,7 @@ async function fetchWithAuth(url, options={}){
 
   let response = await fetch(url, authOptions);
 
-  if(response.status === 401){
+  if(response.status !== 200){
     // accessToken 만료시 : refresh 시도
     const newAccessToken = await refreshAccessToken();
     if(newAccessToken){
