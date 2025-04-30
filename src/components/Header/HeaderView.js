@@ -424,6 +424,10 @@ const styles = theme => ({
       cursor: "pointer"
     }
   },
+  profileMenuTeam: {
+    fontSize: 16,
+    textDecoration:'none'
+  },
   messageNotification: {
     height: "auto",
     display: "flex",

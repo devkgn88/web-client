@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   AppBar,
   Toolbar,
@@ -295,12 +295,11 @@ export default function Header(props) {
               {user.accountName}
             </Typography>
             <Typography
-              className={classes.profileMenuLink}
+              className={classes.profileMenuTeam}
               component="a"
               color="primary"
-              href="https://flatlogic.com"
             >
-              Flalogic.com
+              {user.teamName}
             </Typography>
           </div>
           <MenuItem
@@ -309,7 +308,7 @@ export default function Header(props) {
               classes.headerMenuItem,
             )}
           >
-            <AccountIcon className={classes.profileMenuIcon}/> Profile
+            <AccountIcon className={classes.profileMenuIcon}/> 프로필
           </MenuItem>
           <MenuItem
             className={classNames(
@@ -317,7 +316,7 @@ export default function Header(props) {
               classes.headerMenuItem,
             )}
           >
-            <AccountIcon className={classes.profileMenuIcon} /> Tasks
+            <AccountIcon className={classes.profileMenuIcon} /> 예약현황
           </MenuItem>
           <MenuItem
             className={classNames(
@@ -325,7 +324,7 @@ export default function Header(props) {
               classes.headerMenuItem,
             )}
           >
-            <AccountIcon className={classes.profileMenuIcon} /> Messages
+            <AccountIcon className={classes.profileMenuIcon} /> 1:1문의
           </MenuItem>
           <div className={classes.profileMenuUser}>
             <Typography
@@ -333,7 +332,7 @@ export default function Header(props) {
               color="primary"
               onClick={() => signOut(userDispatch, props.history)}
             >
-              Sign Out
+              로그아웃
             </Typography>
           </div>
         </Menu>
