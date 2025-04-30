@@ -28,4 +28,23 @@ export default makeStyles(theme => ({
         marginLeft: theme.spacing(1),
         marginRight: theme.spacing(1),
     },
+    headerWrapper: {
+        display: "flex",
+        backgroundColor: "#f0f0f0",
+        overflowX: "auto",
+        width: "100%",
+        borderTop: "1px solid #ddd",
+        borderBottom: "1px solid #ddd",
+    },
+    timeSlot: {
+        flex: "0 0 auto",
+        width: 80,
+        textAlign: "center",
+        padding: theme.spacing(1),
+        fontSize: 12,
+        borderRight: "1px solid #ddd",
+        "&:first-child": {
+            borderLeft: "1px solid #ddd",
+        },
+    },
 }));

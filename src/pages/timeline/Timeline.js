@@ -4,6 +4,7 @@ import { Grid } from "@material-ui/core";
 // components
 import PageTitle from "../../components/PageTitle";
 import TimelineController from "./TimelineController";
+import TimelineHeader from "./TimelineHeader";
 
 export default function Timeline() {
     const [selectedDate, setSelectedDate] = useState(new Date());
@@ -27,6 +28,10 @@ export default function Timeline() {
                 onDateChange={handleDateChange}
                 currentDate={formatTitle(selectedDate)}
             />
+            <TimelineHeader 
+                startHour={9} 
+                endHour={18} 
+                minutesPerSlot={60}/>
             </Grid>
         </Grid>
         </>
