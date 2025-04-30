@@ -1,6 +1,6 @@
 {
-    "name": "Timeline",
+    "name": "TimelinePage",
     "version": "0.0.0",
-    "main": "Timeline.js",
+    "main": "TimelinePage.js",
     "private": true
 }

@@ -81,7 +81,7 @@ const structure = [
     link: "",
     icon: <Dot size="large" color="secondary" />,
   },
-  { id: 15, label: "Timeline", link: "/app/timeline", icon: <TimelineIcon /> },
+  { id: 15, label: "TimelinePage", link: "/app/timeline", icon: <TimelineIcon /> },
 ];
 
 function Sidebar({ location }) {

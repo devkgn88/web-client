@@ -1,0 +1,11 @@
+/* custom-timeline.css */
+
+/* 붉은 교접부 제거 및 파란색으로 오버라이드 */
+.custom-timeline .rct-header-root > *:first-child {
+    background-color: #f0f0f0 !important; /* 밝은 파랑 */
+}
+
+/* 항목에 마우스 올리면 약간 진해지도록 */
+.custom-timeline .rct-item:hover {
+    opacity: 0.9;
+}

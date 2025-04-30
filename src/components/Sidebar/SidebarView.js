@@ -47,7 +47,7 @@ const structure = [
   { id: 12, label: 'My recent', link: '', icon: <Dot size="large" color="secondary" /> },
   { id: 13, label: 'Starred', link: '', icon: <Dot size="large" color="primary" /> },
   { id: 14, label: 'Background', link: '', icon: <Dot size="large" color="secondary" /> },
-  { id: 15, label: "Timeline", link: "/app/timeline", icon: <TimelineIcon /> },
+  { id: 15, label: "TimelinePage", link: "/app/timeline", icon: <TimelineIcon /> },
 ];
 
 const SidebarView = ({ classes, theme, toggleSidebar, isSidebarOpened, isPermanent, location }) => {
