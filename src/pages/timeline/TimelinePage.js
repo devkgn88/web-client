@@ -23,16 +23,16 @@ export default function TimelinePage() {
                 roomId: 1,
                 roomName: "회의실 A",
                 title: "기획 회의",
-                startTime: "2025-04-30T09:00:00",
-                endTime: "2025-04-30T10:00:00",
+                startTime: "2025-05-01T09:00:00",
+                endTime: "2025-05-01T10:00:00",
                 color: "#4CAF50", // 초록
             },
             {
                 roomId: 2,
                 roomName: "회의실 B",
                 title: "개발 회의",
-                startTime: "2025-04-30T11:00:00",
-                endTime: "2025-04-30T12:00:00",
+                startTime: "2025-05-01T11:00:00",
+                endTime: "2025-05-01T12:00:00",
                 color: "#2196F3", // 파랑
             },
         ];
