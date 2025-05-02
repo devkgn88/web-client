@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import { fetchWithAuth } from "./UserContext";
 
 // 상태 Context
 const BookingStateContext = React.createContext();
@@ -50,15 +50,28 @@ function useBookingDispatch() {
 
 // 예약 요청 함수
 async function createBooking(dispatch, bookingData) {
-  try {
-    const response = await axios.post("http://localhost:8082/bookings", bookingData);
-    dispatch({ type: "BOOKING_SUCCESS", payload: response.data });
-    alert("예약 완료!");
-  } catch (error) {
-    console.error("예약 실패", error);
-    alert("예약 실패");
+    try {
+      const response = await fetchWithAuth("http://localhost:8082/api/bookings", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(bookingData),
+      });
+  
+      if (!response.ok) {
+        throw new Error("예약 요청 실패");
+      }
+  
+      const result = await response.json(); // 응답을 JSON으로 파싱
+      dispatch({ type: "BOOKING_SUCCESS", payload: result });
+      alert("예약 완료!");
+    } catch (error) {
+      console.error("예약 실패", error);
+      alert("예약 실패");
+    }
   }
-}
+  
 
 export {
   BookingProvider,

@@ -62,7 +62,7 @@ function useUserDispatch() {
   return context;
 }
 
-export { UserProvider, useUserState, useUserDispatch, loginUser, signOut };
+export { UserProvider, useUserState, useUserDispatch, loginUser, signOut, fetchWithAuth };
 
 // ###########################################################
 
@@ -138,7 +138,7 @@ async function fetchWithAuth(url, options={}){
 
   let response = await fetch(url, authOptions);
 
-  if(response.status !== 200){
+  if(response.status === 401){
     // accessToken 만료시 : refresh 시도
     const newAccessToken = await refreshAccessToken();
     if(newAccessToken){
