@@ -7,11 +7,30 @@ import "moment/locale/ko";
 import PageTitle from "../../components/PageTitle";
 import "./custom-timeline.css"; // 오버라이드용 CSS
 
+import { useBookingDispatch, createBooking } from "../../context/BookingContext";
+
+
 const today = moment().startOf("day");
 const startOfDay = today.clone().hour(9);
 const endOfDay = today.clone().hour(18);
 
 export default function TimelinePage() {
+
+    const dispatch = useBookingDispatch();
+
+    const handleBookingClick = () => {
+        const bookingData = {
+          roomId: 1,
+          roomName: "회의실 A",
+          title: "개발 회의",
+          startTime: new Date().toISOString(),
+          endTime: new Date(Date.now() + 3600000).toISOString(),
+        };
+      
+        createBooking(dispatch, bookingData);  // 예약 요청
+      };
+
+
     const [items, setItems] = useState([]);
     const [groups, setGroups] = useState([]);
 
@@ -57,7 +76,10 @@ export default function TimelinePage() {
 
     return (
         <>
-        <PageTitle title="예약현황" />
+        <PageTitle 
+            title="예약현황" 
+            button="예약하기"
+            onClick={handleBookingClick}/>
         <Grid container spacing={4}>
             <Grid item xs={12}>
                 <Timeline

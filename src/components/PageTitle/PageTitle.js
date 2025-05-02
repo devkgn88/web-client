@@ -20,7 +20,8 @@ export default function PageTitle(props) {
           classes={{ root: classes.button }}
           variant="contained"
           size="large"
-          color="secondary"
+          color="primary"
+          onClick={props.onClick ?? undefined}
         >
           {props.button}
         </Button>
