@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Grid, Tooltip } from "@material-ui/core";
+import MUIDataTable from "mui-datatables";
 import Timeline, { TimelineHeaders, DateHeader } from "react-calendar-timeline";
 import moment from "moment";
 import "react-calendar-timeline/lib/Timeline.css";
@@ -13,6 +14,12 @@ import { useBookingDispatch, createBooking } from "../../context/BookingContext"
 const today = moment().startOf("day");
 const startOfDay = today.clone().hour(9);
 const endOfDay = today.clone().hour(18);
+
+const datatableData = [
+    ["회의실A", "학생 라운지", "5", "Y","Y","입구 바로앞"],
+    ["회의실B", "학생 라운지", "5", "Y","Y","입구 안쪽"],
+  ];
+
 
 export default function TimelinePage() {
 
@@ -140,6 +147,40 @@ export default function TimelinePage() {
                     </TimelineHeaders>
                 </Timeline>
             </Grid>
+            <Grid item xs={12}>
+                <MUIDataTable
+                title="회의실 목록"
+                data={datatableData}
+                columns={["이름", "위치", "수용 인원", "칸막이","TV","기타"]}
+                options={{
+                    filterType: "checkbox",
+                    selectableRows: 'single',
+                    selectableRowsOnClick: true,                    
+                    textLabels: {
+                        body: {
+                            noMatch: "데이터가 없습니다",
+                        },
+                        pagination: {
+                            rowsPerPage: "페이지당 글 수",
+                            displayRows: "중",
+                        },
+                        toolbar: {
+                            search: "검색",
+                            downloadCsv: "CSV 다운로드",
+                            print: "인쇄",                            
+                            viewColumns: "컬럼 보기",
+                            filterTable: "필터",
+                        },
+                        selectedRows: {
+                            text: "행 선택됨",
+                            delete: "삭제",
+                            deleteAria: "선택된 행 삭제",
+                        },
+                    },
+                
+                }}
+                />
+            </Grid>            
         </Grid>
         </>
     );
