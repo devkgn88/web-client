@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Grid, Tooltip } from "@material-ui/core";
+import { Grid, Tooltip, TextField, Button } from "@material-ui/core";
 import MUIDataTable from "mui-datatables";
 import Timeline, { TimelineHeaders, DateHeader } from "react-calendar-timeline";
 import moment from "moment";
@@ -31,20 +31,27 @@ export default function TimelinePage() {
     const dispatch = useBookingDispatch();
 
     const handleBookingClick = () => {
+        if (!isValidTimeRange || selectedRoomIndex === null) return;
+        const selectedRoom = datatableData[selectedRoomIndex];
+      
         const bookingData = {
-          roomId: 1,
-          roomName: "회의실 A",
-          title: "개발 회의",
-          startTime: new Date().toISOString(),
-          endTime: new Date(Date.now() + 3600000).toISOString(),
+          roomId: selectedRoomIndex + 1, // 예시: 인덱스 기준 ID 부여
+          roomName: selectedRoom[0],
+          title: "회의 예약",
+          startTime: new Date(startTime).toISOString(),
+          endTime: new Date(endTime).toISOString(),
         };
       
-        createBooking(dispatch, bookingData);  // 예약 요청
+        createBooking(dispatch, bookingData);
       };
 
 
     const [items, setItems] = useState([]);
     const [groups, setGroups] = useState([]);
+    const [startTime, setStartTime] = useState('');
+    const [endTime, setEndTime] = useState('');
+    const [selectedRoomIndex, setSelectedRoomIndex] = useState(null);
+    const isValidTimeRange = startTime && endTime && new Date(startTime) < new Date(endTime);
 
     useEffect(() => {
         moment.locale("ko");
@@ -89,9 +96,46 @@ export default function TimelinePage() {
     return (
         <>
         <PageTitle 
-            title="예약현황" 
-            button="예약하기"
-            onClick={handleBookingClick}/>
+            title="예약현황" />
+        <Grid container
+              direction="row"
+              justifyContent="space-between"
+              alignItems="center"
+              style={{ margin: "16px 0" }}>
+            <Grid item>
+                <TextField
+                label="시작 시간"
+                type="datetime-local"
+                InputLabelProps={{ shrink: true }}
+                value={startTime}
+                onChange={(e) => setStartTime(e.target.value)}
+                />
+            </Grid>
+            <Grid item>
+                <TextField
+                label="종료 시간"
+                type="datetime-local"
+                InputLabelProps={{ shrink: true }}
+                value={endTime}
+                onChange={(e) => setEndTime(e.target.value)}
+                />
+            </Grid>
+            <Grid item>
+                <Button
+                variant="contained"
+                color="primary"
+                onClick={handleBookingClick}
+                disabled={!isValidTimeRange || selectedRoomIndex === null}
+                >
+                예약하기
+                </Button>
+                {startTime && endTime && new Date(startTime) >= new Date(endTime) && (
+                    <div style={{ color: 'red', marginTop: 8 }}>
+                        종료 시간은 시작 시간보다 늦어야 합니다.
+                    </div>
+                )}
+            </Grid>
+        </Grid>    
         <Grid container spacing={4}>
             <Grid item xs={12}>
                 <Timeline
@@ -160,7 +204,8 @@ export default function TimelinePage() {
                 options={{
                     filterType: "checkbox",
                     selectableRows: 'single',
-                    selectableRowsOnClick: true,                    
+                    selectableRowsOnClick: true,   
+                    rowHover: true,                 
                     textLabels: {
                         body: {
                             noMatch: "데이터가 없습니다",
@@ -182,7 +227,13 @@ export default function TimelinePage() {
                             deleteAria: "선택된 행 삭제",
                         },
                     },
-                
+                    onRowSelectionChange: rowsSelected => {
+                        if (rowsSelected.length > 0) {
+                            setSelectedRoomIndex(rowsSelected[0]); // 첫 번째 선택
+                        } else {
+                            setSelectedRoomIndex(null);
+                        }
+                    },
                 }}
                 />
             </Grid>            
