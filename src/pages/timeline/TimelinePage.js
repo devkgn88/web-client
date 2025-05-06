@@ -31,7 +31,7 @@ export default function TimelinePage() {
     const dispatch = useBookingDispatch();
 
     const handleBookingClick = () => {
-        if (!isValidTimeRange || selectedRoomIndex === null) return;
+        if (!isValidTimeRange || selectedRoomIndex === null || !purpose.trim()) return;
 
         const dataIndex = selectedRoomIndex.dataIndex;
         const selectedRoom = datatableData[dataIndex];
@@ -39,7 +39,7 @@ export default function TimelinePage() {
         const bookingData = {
           roomId: Number(selectedRoomIndex) + 1, // 예시: 인덱스 기준 ID 부여
           roomName: selectedRoom[0],
-          title: "회의 예약",
+          title: purpose,
           startTime: new Date(startTime).toISOString(),
           endTime: new Date(endTime).toISOString(),
         };
@@ -52,6 +52,7 @@ export default function TimelinePage() {
     const [groups, setGroups] = useState([]);
     const [startTime, setStartTime] = useState('');
     const [endTime, setEndTime] = useState('');
+    const [purpose, setPurpose] = useState('');
     const [selectedRoomIndex, setSelectedRoomIndex] = useState(null);
     const isValidTimeRange = startTime && endTime && new Date(startTime) < new Date(endTime);
 
@@ -137,40 +138,60 @@ export default function TimelinePage() {
               direction="row"
               justifyContent="space-between"
               alignItems="center"
-              style={{ margin: "16px 0" }}>
-            <Grid item>
+              style={{ margin: "16px 0" }}
+              spacing={2}>
+            <Grid item xs={12} md={3}>
                 <TextField
                 label="시작 시간"
                 type="datetime-local"
                 InputLabelProps={{ shrink: true }}
+                fullWidth
                 value={startTime}
                 onChange={(e) => setStartTime(e.target.value)}
                 />
             </Grid>
-            <Grid item>
+            <Grid item xs={12} md={1} container justifyContent="center" alignItems="center">
+                <span style={{ fontSize: '1.1rem' }}>~</span>
+            </Grid>
+            <Grid item xs={12} md={3}>
                 <TextField
                 label="종료 시간"
                 type="datetime-local"
                 InputLabelProps={{ shrink: true }}
+                fullWidth
                 value={endTime}
                 onChange={(e) => setEndTime(e.target.value)}
                 />
-            </Grid>
-            <Grid item>
-                <Button
-                variant="contained"
-                color="primary"
-                onClick={handleBookingClick}
-                disabled={!isValidTimeRange || selectedRoomIndex === null}
-                >
-                예약하기
-                </Button>
-                {startTime && endTime && new Date(startTime) >= new Date(endTime) && (
-                    <div style={{ color: 'red', marginTop: 8 }}>
-                        종료 시간은 시작 시간보다 늦어야 합니다.
-                    </div>
-                )}
-            </Grid>
+            </Grid>  
+            <Grid item xs={12} md={3}>
+                <Grid item>
+                    <TextField
+                        label="사용 목적"
+                        placeholder="예: 주간 회의"
+                        fullWidth
+                        value={purpose}
+                        onChange={(e) => setPurpose(e.target.value)}
+                    />
+                </Grid>                
+            </Grid>  
+            <Grid item xs={12} md={2} container justifyContent="center" alignItems="center">
+    <Grid item>
+        <Button
+            variant="contained"
+            color="primary"
+            onClick={handleBookingClick}
+            disabled={!isValidTimeRange || selectedRoomIndex === null || !purpose.trim()}
+        >
+            예약하기
+        </Button>
+        {startTime && endTime && new Date(startTime) >= new Date(endTime) && (
+            <div style={{ color: 'red', marginTop: 8 }}>
+                종료 시간은 시작 시간보다 늦어야 합니다.
+            </div>
+        )}
+    </Grid>
+</Grid>
+
         </Grid>    
         <Grid container spacing={4}>
             <Grid item xs={12}>
