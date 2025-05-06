@@ -32,10 +32,12 @@ export default function TimelinePage() {
 
     const handleBookingClick = () => {
         if (!isValidTimeRange || selectedRoomIndex === null) return;
-        const selectedRoom = datatableData[selectedRoomIndex];
-      
+
+        const dataIndex = selectedRoomIndex.dataIndex;
+        const selectedRoom = datatableData[dataIndex];
+        
         const bookingData = {
-          roomId: selectedRoomIndex + 1, // 예시: 인덱스 기준 ID 부여
+          roomId: Number(selectedRoomIndex) + 1, // 예시: 인덱스 기준 ID 부여
           roomName: selectedRoom[0],
           title: "회의 예약",
           startTime: new Date(startTime).toISOString(),
