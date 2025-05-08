@@ -4,6 +4,11 @@ React 기반의 회의실 예약 시스템 프론트엔드 애플리케이션
 ## 🔗 프로젝트 링크
 GitHub: https://github.com/devkgn88/web-client
 
+> [!NOTE]
+> 현재 이 프로젝트는 React 16 → React 18 버전 마이그레이션을 진행 중입니다.<br>
+> 안정적인 기존 버전은 `main` 브랜치에 있습니다.<br>
+> React 18 관련 변경사항은 `migrate` 브랜치를 참고해주세요.
+
 ## 🧩 개요
 web-client는 사용자 친화적인 UI를 제공하는 회의실 예약 시스템의 프론트엔드 애플리케이션입니다. React와 Material-UI를 활용하여 직관적인 인터페이스를 구현하였으며, 사용자 인증 및 예약 현황 조회 기능을 제공합니다.
 
