@@ -17,7 +17,7 @@ import {
   Search as SearchIcon,
   Send as SendIcon,
   ArrowBack as ArrowBackIcon
-} from "@material-ui/icons";
+} from "@mui/icons-materials";
 import { fade } from "@mui/material/styles/colorManipulator";
 import classNames from "classnames";
 

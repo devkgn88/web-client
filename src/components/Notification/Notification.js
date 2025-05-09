@@ -14,7 +14,7 @@ import {
   AccountBox as CustomerIcon,
   Done as ShippedIcon,
   Publish as UploadIcon,
-} from "@material-ui/icons";
+} from "@mui/icons-material";
 import { useTheme } from "@material-ui/styles";
 import classnames from "classnames";
 import tinycolor from "tinycolor2";

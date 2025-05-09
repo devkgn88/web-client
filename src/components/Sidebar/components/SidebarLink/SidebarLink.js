@@ -8,7 +8,7 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
-import { Inbox as InboxIcon } from "@material-ui/icons";
+import { Inbox as InboxIcon } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 import classnames from "classnames";
 

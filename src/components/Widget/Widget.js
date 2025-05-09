@@ -6,7 +6,7 @@ import {
   MenuItem,
   Typography,
 } from "@mui/material";
-import { MoreVert as MoreIcon } from "@material-ui/icons";
+import { MoreVert as MoreIcon } from "@mui/icons-material";
 import classnames from "classnames";
 
 // styles

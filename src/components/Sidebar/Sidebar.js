@@ -11,7 +11,7 @@ import {
   HelpOutline as FAQIcon,
   ArrowBack as ArrowBackIcon,
   Timeline as TimelineIcon,
-} from "@material-ui/icons";
+} from "@mui/icons-material";
 import { useTheme } from "@material-ui/styles";
 import { withRouter } from "react-router-dom";
 import classNames from "classnames";

@@ -15,7 +15,7 @@ import {
   HelpOutline as FAQIcon,
   ArrowBack as ArrowBackIcon,
   Timeline as TimelineIcon
-} from "@material-ui/icons";
+} from "@mui/icons-material";
 import classNames from 'classnames';
 
 import SidebarLink from './components/SidebarLink/SidebarLinkContainer';
