@@ -4,7 +4,7 @@ import {
   Badge as BadgeBase,
   Typography as TypographyBase,
   Button as ButtonBase,
-} from "@material-ui/core";
+} from "@mui/material";
 import { useTheme, makeStyles } from "@material-ui/styles";
 import classnames from "classnames";
 

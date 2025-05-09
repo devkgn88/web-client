@@ -3,7 +3,7 @@ import {
   Drawer,
   IconButton,
   List,
-  withStyles } from "@material-ui/core";
+  withStyles } from "@mui/material";
 import {
   Home as HomeIcon,
   NotificationsNone as NotificationsIcon,

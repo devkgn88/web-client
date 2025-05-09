@@ -7,7 +7,7 @@ import {
   Menu,
   MenuItem,
   Fab,
-} from "@material-ui/core";
+} from "@mui/material";
 import {
   Menu as MenuIcon,
   MailOutline as MailIcon,

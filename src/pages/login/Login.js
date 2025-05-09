@@ -8,7 +8,7 @@ import {
   Tab,
   TextField,
   Fade,
-} from "@material-ui/core";
+} from "@mui/material";
 import { withRouter, Link } from "react-router-dom";
 import classnames from "classnames";
 

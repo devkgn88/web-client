@@ -5,7 +5,7 @@ import {
   Tabs,
   Tab,
   Paper,
-} from "@material-ui/core";
+} from "@mui/material";
 import * as Icons from "@material-ui/icons";
 
 // styles
