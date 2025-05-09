@@ -16,7 +16,7 @@ import {
   Search as SearchIcon,
   Send as SendIcon,
   ArrowBack as ArrowBackIcon,
-} from "@material-ui/icons";
+} from "@mui/icons-material";
 import classNames from "classnames";
 
 // styles
