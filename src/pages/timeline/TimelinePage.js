@@ -64,48 +64,48 @@ export default function TimelinePage() {
                 roomId: 1,
                 roomName: "회의실 A",
                 title: "기획 회의",
-                startTime: "2025-05-06T09:00:00",
-                endTime: "2025-05-06T10:00:00",
+                startTime: "2025-05-08T09:00:00",
+                endTime: "2025-05-08T10:00:00",
                 color: "#4CAF50", // 초록
             },
             {
                 roomId: 1,
                 roomName: "회의실 A",
                 title: "주간 회의",
-                startTime: "2025-05-06T16:00:00",
-                endTime: "2025-05-06T18:00:00",
+                startTime: "2025-05-08T16:00:00",
+                endTime: "2025-05-08T18:00:00",
                 color: "#4CAF50", // 초록
             },
             {
                 roomId: 2,
                 roomName: "회의실 B",
                 title: "개발 회의",
-                startTime: "2025-05-06T15:00:00",
-                endTime: "2025-05-06T16:00:00",
+                startTime: "2025-05-08T15:00:00",
+                endTime: "2025-05-08T16:00:00",
                 color: "#2196F3", // 파랑
             },
             {
                 roomId: 2,
                 roomName: "회의실 B",
                 title: "피드백 회의",
-                startTime: "2025-05-06T12:00:00",
-                endTime: "2025-05-06T13:00:00",
+                startTime: "2025-05-08T12:00:00",
+                endTime: "2025-05-08T13:00:00",
                 color: "#2196F3", // 파랑
             },
             {
                 roomId: 3,
                 roomName: "회의실 C",
                 title: "멘토링 2회차",
-                startTime: "2025-05-06T10:00:00",
-                endTime: "2025-05-06T11:00:00",
+                startTime: "2025-05-08T10:00:00",
+                endTime: "2025-05-08T11:00:00",
                 color: "#f3b421", // 주황
             },
             {
                 roomId: 3,
                 roomName: "회의실 C",
                 title: "멘토링 1회차",
-                startTime: "2025-05-06T14:00:00",
-                endTime: "2025-05-06T15:00:00",
+                startTime: "2025-05-08T14:00:00",
+                endTime: "2025-05-08T15:00:00",
                 color: "#f3b421", // 주황
             },
         ];
